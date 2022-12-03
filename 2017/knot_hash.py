@@ -66,12 +66,16 @@ class CircularList(list):
 
     def _rangeify(self, slice_):
         start, stop, step = slice_.start, slice_.stop, slice_.step
-        if start is None:
-            start = 0
-        if stop is None:
-            stop = start + len(self)
-        if step is None:
-            step = 1
         if start < 0 or stop < 0:
             raise IndexError("Negative indices not defined for CircularList")
+        n = len(self)
+        if start is None:
+            start = 0
+        start = start % n
+        if stop is None:
+            stop = len(self)
+        else:
+            stop = n
+        if step is None:
+            step = 1
         return range(start, stop, step)
