@@ -1,3 +1,5 @@
 jupyter
 numpy
 networkx
+more_itertools
+sympy
